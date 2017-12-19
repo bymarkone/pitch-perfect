@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Pitch Perfect.xcodeproj">
+      location = "group:/Users/bymarkone/Source/Pitch Perfect/Pitch Perfect/AppDelegate.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
