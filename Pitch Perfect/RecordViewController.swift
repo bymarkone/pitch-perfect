@@ -16,20 +16,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     
     var audioRecorder: AVAudioRecorder!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        stopRecording.isEnabled = false
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    
     @IBAction func doRecord(_ sender: Any) {
         stopRecording.isEnabled = true
         record.isEnabled = false
@@ -58,14 +44,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         try! audioSession.setActive(false)
     }
     
-
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if (flag) {
-            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
-        } else {
-            print("Recording didn't work")
-        }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        stopRecording.isEnabled = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,6 +54,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
             let playSoundsVC = segue.destination as!PlaySoundsViewController
             let recordedAudioURL = sender as! URL
             playSoundsVC.recordedAudioURL = recordedAudioURL
+        }
+    }
+
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if (flag) {
+            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
+        } else {
+            print("Recording didn't work")
         }
     }
     

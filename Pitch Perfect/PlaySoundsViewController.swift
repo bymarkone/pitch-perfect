@@ -30,10 +30,6 @@ class PlaySoundsViewController: UIViewController {
         case slow = 0, fast, chipmunk, vader, echo, reverb
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        configureUI(.notPlaying)
-    }
-    
     @IBAction func stopButtonPressed(_ sender: Any) {
         stopAudio()
     }
@@ -57,8 +53,20 @@ class PlaySoundsViewController: UIViewController {
         configureUI(.playing)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureUI(.notPlaying)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        slowButton.imageView?.contentMode = .scaleAspectFit
+        fastButton.imageView?.contentMode = .scaleAspectFit
+        highPitchButton.imageView?.contentMode = .scaleAspectFit
+        lowPitchButton.imageView?.contentMode = .scaleAspectFit
+        echoButton.imageView?.contentMode = .scaleAspectFit
+        reverbButton.imageView?.contentMode = .scaleAspectFit
+        stopButton.imageView?.contentMode = .scaleAspectFit
         setupAudio()
     }
     
